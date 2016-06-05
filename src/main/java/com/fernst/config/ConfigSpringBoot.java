@@ -7,10 +7,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 /**
- * Created by fernando on 5/31/16.
+ * The type Config spring boot.
  */
 @Configuration
-public class ApiConfig extends WebMvcConfigurationSupport {
+public class ConfigSpringBoot extends WebMvcConfigurationSupport {
 
   @Override
   @Bean

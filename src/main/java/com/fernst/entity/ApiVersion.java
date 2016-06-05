@@ -13,19 +13,28 @@ import java.lang.annotation.Target;
 public @interface ApiVersion {
 
   /**
-   * The constant BASE. The currently lowest supported version of the API. When a version gets
-   * deprecated, this number is increased.
-   */
-  public static int BASE = 1;
-
-  /**
-   * The constant ANY_VERSION. This is a catch-all to specify endpoints that support any version of
-   * the api.
+   * The constant ANY_VERSION.
    */
   public static int ANY_VERSION = -1;
 
   /**
-   * Value int [].
+   * Value int [ ].
+   *
+   * @return the int [ ]
    */
-  int[] value() default {BASE};
+  int[] value() default {ANY_VERSION};
+
+  /**
+   * Min int.
+   *
+   * @return the int
+   */
+  int min() default 0;
+
+  /**
+   * Max int.
+   *
+   * @return the int
+   */
+  int max() default Integer.MAX_VALUE;
 }

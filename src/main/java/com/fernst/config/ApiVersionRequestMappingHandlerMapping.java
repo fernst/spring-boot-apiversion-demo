@@ -13,22 +13,20 @@ import java.lang.reflect.Method;
  */
 public class ApiVersionRequestMappingHandlerMapping extends RequestMappingHandlerMapping {
 
-  @Override
-  protected RequestCondition<?> getCustomTypeCondition(Class<?> handlerType) {
-    ApiVersion typeAnnotation = AnnotationUtils.findAnnotation(handlerType, ApiVersion.class);
-    return createCondition(typeAnnotation);
-  }
+    @Override
+    protected RequestCondition<?> getCustomTypeCondition(Class<?> handlerType) {
+        ApiVersion typeAnnotation = AnnotationUtils.findAnnotation(handlerType, ApiVersion.class);
+        return createCondition(typeAnnotation);
+    }
 
-  @Override
-  protected RequestCondition<?> getCustomMethodCondition(Method method) {
-    ApiVersion methodAnnotation = AnnotationUtils.findAnnotation(method, ApiVersion.class);
-    return createCondition(methodAnnotation);
-  }
+    @Override
+    protected RequestCondition<?> getCustomMethodCondition(Method method) {
+        ApiVersion methodAnnotation = AnnotationUtils.findAnnotation(method, ApiVersion.class);
+        return createCondition(methodAnnotation);
+    }
 
-  private RequestCondition<?> createCondition(ApiVersion accessMapping) {
-    return (accessMapping != null) ?
-        new ApiVersionRequestCondition(accessMapping.value()) :
-        null;
-  }
+    private RequestCondition<?> createCondition(ApiVersion accessMapping) {
+        return (accessMapping != null) ? new ApiVersionRequestCondition(accessMapping.value(), accessMapping.min(), accessMapping.max()) : null;
+    }
 
 }
