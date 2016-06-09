@@ -1,6 +1,7 @@
 package com.fernst.rest;
 
 import com.fernst.config.ConfigRestApi;
+import com.fernst.entity.ApiResponse;
 import com.fernst.entity.ApiVersion;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,8 @@ public class DemoResource {
      */
     //No filter gets applied here
     @RequestMapping("/noversion")
-    public ResponseEntity<String> getNoVersionEndpoint() {
-        return new ResponseEntity<>("No Version annotation response", HttpStatus.OK);
+    public ResponseEntity<ApiResponse> getNoVersionEndpoint() {
+        return new ResponseEntity<>(new ApiResponse("No Version annotation response"), HttpStatus.OK);
     }
 
     /**
@@ -40,8 +41,8 @@ public class DemoResource {
     //Supports any version (even when no version is specified)
     @RequestMapping("/any")
     @ApiVersion(ApiVersion.ANY_VERSION)
-    public ResponseEntity<String> getAnyVersionEndpoint() {
-        return new ResponseEntity<>("Any Version response", HttpStatus.OK);
+    public ResponseEntity<ApiResponse> getAnyVersionEndpoint() {
+        return new ResponseEntity<>(new ApiResponse("Any Version response"), HttpStatus.OK);
     }
 
     /**
@@ -52,8 +53,8 @@ public class DemoResource {
     //Works with the base version of the api
     @RequestMapping("/range")
     @ApiVersion(min = 1, max = 1)
-    public ResponseEntity<String> getV1Range() {
-        return new ResponseEntity<>("V1-V1 range response", HttpStatus.OK);
+    public ResponseEntity<ApiResponse> getV1Range() {
+        return new ResponseEntity<>(new ApiResponse("V1-V1 range response"), HttpStatus.OK);
     }
 
     /**
@@ -64,8 +65,8 @@ public class DemoResource {
     //Works with the base version of the api
     @RequestMapping("/range")
     @ApiVersion(min = 2, max = 3)
-    public ResponseEntity<String> getV2V3Range() {
-        return new ResponseEntity<>("V2-V3 range response", HttpStatus.OK);
+    public ResponseEntity<ApiResponse> getV2V3Range() {
+        return new ResponseEntity<>(new ApiResponse("V2-V3 range response"), HttpStatus.OK);
     }
 
     /**
@@ -76,8 +77,8 @@ public class DemoResource {
     //Works with the base version of the api
     @RequestMapping("/range")
     @ApiVersion(min = 4, max = 5)
-    public ResponseEntity<String> getV4V5Range() {
-        return new ResponseEntity<>("V4-V5 range response", HttpStatus.OK);
+    public ResponseEntity<ApiResponse> getV4V5Range() {
+        return new ResponseEntity<>(new ApiResponse("V4-V5 range response"), HttpStatus.OK);
     }
 
     /**
@@ -88,8 +89,8 @@ public class DemoResource {
     //Only the filter for version 1 is applied
     @RequestMapping("/specific")
     @ApiVersion(value = {1, 2})
-    public ResponseEntity<String> getV1Specific() {
-        return new ResponseEntity<>("V1, V2 response specifying version", HttpStatus.OK);
+    public ResponseEntity<ApiResponse> getV1Specific() {
+        return new ResponseEntity<>(new ApiResponse("V1, V2 response specifying version"), HttpStatus.OK);
     }
 
     /**
@@ -100,7 +101,7 @@ public class DemoResource {
     //Specific filter for versions 3,v4 and 5
     @RequestMapping("/specific")
     @ApiVersion(value = {3, 4, 5})
-    public ResponseEntity<String> getV2Specific() {
-        return new ResponseEntity<>("V3, V4, V5 response specifying version", HttpStatus.OK);
+    public ResponseEntity<ApiResponse> getV2Specific() {
+        return new ResponseEntity<>(new ApiResponse("V3, V4, V5 response specifying version"), HttpStatus.OK);
     }
 }
